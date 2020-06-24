@@ -21,4 +21,16 @@ after_success:
     - docker push hgcook/multi-nginx
     - docker push hgcook/multi-server
     - docker push hgcook/multi-worker
+  
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: MultiDocker-env
+    bucket_name: elasticbeanstalk-us-east-2-178840595548
+    bucket_path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
     
